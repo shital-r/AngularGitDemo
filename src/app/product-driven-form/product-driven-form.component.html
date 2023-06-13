@@ -1,0 +1,36 @@
+
+
+<div class="container w-50 shadow p-5">
+<h3 class="text-center">shopping form</h3>
+<div class="row">
+    <form >
+        <div>
+            <label for="id1" class="form-label">Category</label>
+            <input type="text" class="form-control" name="category" id="id1" [(ngModel)]="productform.category" required #category="ngModel">
+        </div>
+        <div>
+            <label for="id2" class="form-label">Product Name</label>
+            <input type="text"  class="form-control" name="pname" id="id2" [(ngModel)]="productform.pname" required #pname="ngModel">
+        </div>
+        <div>
+            <label for="id3" class="form-label">Price</label>
+            <input type="number" class="form-control" name="price" id="id3" [(ngModel)]="productform.price" required #price="ngModel" (ngModelChange)="gettotal()">
+        </div>
+        <div>
+            <label for="id4" class="form-label">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="id4" [(ngModel)]="productform.quantity" required #quantity="ngModel" (ngModelChange)="gettotal()">
+        </div>
+        <div>
+            <label for="id5" class="form-label">Total Price</label>
+            <input type="number" class="form-control" name="total" id="id5" [(ngModel)]="productform.total" readonly required #total="ngModel">
+        </div>
+        <!-- <input type="submit" class="btn btn-primary" >&nbsp; &nbsp; -->
+<br>
+        <button type="button" (click)="getdata()">Get Data</button>
+&nbsp;
+        <button (click)="reset()">reset</button>
+    
+    </form>
+</div>
+
+</div>

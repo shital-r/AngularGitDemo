@@ -1,0 +1,38 @@
+<div class="container w-50">
+    <h3 class="text-center">reactive driven form</h3>
+    <div>
+        <form [formGroup]="loginform" (ngsubmit)="save()">
+            <label for="id1" class="form-check-label">firstname</label>
+            <input type="text" class="form-control" id="id1" name="fname" formControlName="firstname">
+            <div *ngIf="firstname.touched && firstname.invalid">
+                <div class="invalid-feedback d-block" *ngIf="firstname.errors?.['required']">*required</div>
+                <div class="invalid-feedback d-block" *ngIf="firstname.errors?.['pattern']">*please enetr valid data</div>
+             </div>
+            <label for="id2" class="form-check-label">lastname</label>
+            <input type="text" class="form-control" id="id2" name="lname" formControlName="lastname">
+            <label for="id3" class="form-check-label">mobileno</label>
+            <input type="text" class="form-control" id="id3" name="mobno" formControlName="mobileno">
+            <div *ngIf="mobileno.touched && mobileno.invalid">
+                <div class="invalid-feedback d-block" *ngIf="mobileno.errors?.['required']">*required</div>
+                <div class="invalid-feedback d-block" *ngIf="mobileno.errors?.['minlength']">mobile no in 10 digit</div>
+                <div class="invalid-feedback d-block" *ngIf="mobileno.errors?.['maxlength']">mobile no in 10 digit</div>
+
+
+            </div>
+            <label for="id4" class="form-check-label">email</label>
+            <input type="text" class="form-control" id="id4" name="email" formControlName="email">
+            <div *ngIf="email.touched && email.invalid">
+                <div class="invalid-feedback d-block" *ngIf="email.errors?.['required']">*required</div>
+            </div>
+            <br>
+            <div>
+                <input type="submit" class="btn btn-success" (click)="save()">&nbsp;
+                <button type="button" class="btn btn-primary" (click)="getdata()">Get Data</button>&nbsp;&nbsp;
+                <button type="button" class="btn btn-primary" (click)="patchdata()">patch data</button>
+                
+            </div>
+
+
+        </form>
+    </div>
+</div>

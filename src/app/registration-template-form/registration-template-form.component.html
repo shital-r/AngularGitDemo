@@ -1,0 +1,21 @@
+<div class="container w-50 ">
+    <h3>registrionForm</h3>
+    <form #registrionForm="ngForm" (ngSubmit)="save(registrionForm)">
+        <label for="id1" class="form-label">UserName</label>
+        <input type="text" id="id1" class="form-control"  name="uname" ngModel required  #uname="ngModel">
+        <label for="id2" class="form-label">pwd</label>
+        <input type="password" id="id2" class="form-control" name="pwd" ngModel required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%+?&])[A-Za-z\d@$!%*?&]{8,}$" maxlength="8" #pwd="ngModel"><br>
+        <div *ngIf="pwd.touched && pwd.invalid">
+            <div class="invalid-feedback d-block" *ngIf="pwd.errors?.['required']"> *</div>
+            <div class="invalid-feedback d-block" *ngIf="pwd.errors?.['pattern']">password contains one uppercase,number and length should be 8</div>
+        </div>
+            <!-- <input type="password" class="form-control" id="id5" name="pwd" ngModel required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%+?&])[A-Za-z\d@$!%*?&]{8,}$" maxlength=8
+            minlength="8" #pwd="ngModel">
+                       <div class="row" *ngIf=" pwd.touched && pwd.invalid ">
+                           <div class="invalid-feedback d-block" *ngIf="pwd.errors?.['required']">it is required</div>
+                           <div class="invalid-feedback d-block" *ngIf="pwd.errors?.['pattern']">one uppercase,one special charcter and maximum 8 digits required</div>
+                       </div> -->
+        <input type="submit" class="btn btn-secondary">
+        </form>
+        
+</div>

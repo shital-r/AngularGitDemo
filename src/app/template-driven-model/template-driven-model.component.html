@@ -1,0 +1,113 @@
+<p>template-driven-model works!</p>
+
+
+<div class="container mt-5 w-50  bg-dark text-white">
+    <div class="row">
+        <h3 class="text-center p-5">Template driven form</h3>
+
+    </div>
+    <form #signupForm="ngForm" (ngSubmit)="save(signupForm)">
+        <div class="mb-3">
+            <label for="id1" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="id1" name="fName" required pattern="[A-Z][a-z]{2,10}"
+                minlength="2" [(ngModel)]="signupobj.fName" #fName="ngModel">
+            <div class="row" *ngIf="fName.touched &&  fName.invalid">
+                <div class="invalid-feedback d-block" *ngIf="fName.errors?.['required']">It is required</div>
+                <div class="invalid-feedback d-block" *ngIf="fName.errors?.['pattern']">Please enter the valid name
+                </div>
+                <div class="invalid-feedback d-block" *ngIf="fName.errors?.['minlength']">Minimum 2 characters are
+                    required</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="id2" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="id2" name="lName" [(ngModel)]="signupobj.lName" required
+                pattern="[A-Z][a-z]{5,15}" minlength="2" #lName="ngModel">
+            <div class="row" *ngIf="lName.touched &&  lName.invalid">
+                <div class="invalid-feedback d-block" *ngIf="lName.errors?.['required']">It is required</div>
+                <div class="invalid-feedback d-block" *ngIf="lName.errors?.['pattern']">Please enter the valid name
+                </div>
+                <div class="invalid-feedback d-block" *ngIf="lName.errors?.['minlength']">Minimum 2 characters are
+                    required</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="id3" class="form-label">Mobile No:</label>
+            <input type="text" class="form-control" id="id3" name="mobno" [(ngModel)]="signupobj.mobno" required
+                pattern="[789][0-9]{9}" #mobno="ngModel">
+            <div class="row" *ngIf=" mobno.touched && mobno.invalid ">
+                <div class="invalid-feedback d-block" *ngIf="mobno.errors?.['required']">it is required</div>
+                <div class="invalid-feedback d-block" *ngIf="mobno.errors?.['pattern']">Please enter valid name</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="id4" class="form-label">Email-Id</label>
+            <input type="text" class="form-control" id="id4" name="email" [(ngModel)]="signupobj.email" required
+                pattern="[a-z0-9.%+]+@[a-z0-9]+.[a-z]{2,}" #email="ngModel">
+            <div class="row" *ngIf="email.touched &&  email.invalid">
+                <div class="invalid-feedback d-block" *ngIf="email.errors?.['required']">It is required</div>
+                <div class="invalid-feedback d-block" *ngIf="email.errors?.['pattern']">Please enter the valid Email-Id
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="id5" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="id5" name="pwd" [(ngModel)]="signupobj.pwd" required
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%+?&])[A-Za-z\d@$!%*?&]{8,}$" maxlength=8 minlength="8"
+                #pwd="ngModel">
+            <div class="row" *ngIf=" pwd.touched && pwd.invalid ">
+                <div class="invalid-feedback d-block" *ngIf="pwd.errors?.['required']">it is required</div>
+                <div class="invalid-feedback d-block" *ngIf="pwd.errors?.['pattern']">one uppercase,one special charcter
+                    and maximum 8 digits required</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="id6">Date of Birth:</label>&nbsp;
+            <input type="date" id="id6" name="dob" [(ngModel)]="signupobj.dob" required  (ngModelChange)="agecalculate()">
+
+        </div>
+        <div>
+            <label for="id9" class="form-label">Age</label>
+            <input type="number" class="form-control" name="age" id="id9" [(ngModel)]="signupobj.age" required>
+        </div>
+        <div class="mb-3">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <div>
+            <label for="id7" class="form-label">state:</label>
+            <select name="states" id="id7" class="form-control" [(ngModel)]="signupobj.state"
+                (ngModelChange)="getcities()">
+                <option *ngFor="let state of states">{{state}}</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="id8" class="form-label">city:</label>
+            <select name="city" id="id8" class="form-control" [(ngModel)]="signupobj.city">
+                <option *ngFor="let city of cities">{{city}}</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <input type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">&nbsp;
+            <button type="button" class="btn btn-primary" (click)="getdata()">Get Data</button>
+        </div>
+
+
+    </form>
+    <div>
+        <div><span class="fw-bold">value</span>:&nbsp;{{signupForm.value | json}}</div>
+        <div> <span class="fw-bold">touched</span>: &nbsp;{{signupForm.touched }}</div>
+        <div> <span class="fw-bold">untouched</span>:&nbsp;{{signupForm.untouched}}</div>
+        <div> <span class="fw-bold">dirty</span>:&nbsp;{{signupForm.dirty }}</div>
+        <div> <span class="fw-bold">pristine</span>&nbsp;{{signupForm.pristine }}</div>
+        <div> <span class="fw-bold">valid</span>:&nbsp;{{signupForm.valid}}</div>
+        <div> <span class="fw-bold">invalid</span>:&nbsp;{{signupForm.invalid}}</div>
+
+    </div>
+</div>

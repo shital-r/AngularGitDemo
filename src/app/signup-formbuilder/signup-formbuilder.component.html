@@ -1,0 +1,41 @@
+<div class="container mt-2 border p-3">
+    <h3 class="text-center">Sign Up Form</h3>
+    <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <label for="id1">User Name</label>
+                <input type="text" name="uName" id="id1" class="form-control" formControlName="userName">
+            </div>
+            <div class="col-md-4">
+                <label for="id2">Password</label>
+                <input type="text" name="pwd" id="id2" class="form-control" formControlName="password">
+            </div>
+            <div class="col-md-4">
+                <label for="id3">Confirm Password</label>
+                <input type="text" name="Cpwd" id="id3" class="form-control" formControlName="confirmPassword">
+                <div *ngIf="confirmPassword?.errors?.['passwordMismatch']" class="invalid-feedback d-block">
+                    Password and Confirm Password should Match
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="id4">Age</label>
+                <input type="text" name="age" id="id4" class="form-control" formControlName="age">
+                <div *ngIf="age?.errors?.['ageNotMatch']" class="invalid-feedback d-block">
+                   Age Should Greater than 18
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="id5">Email</label>
+                <input type="text" name="email" id="id5" class="form-control" formControlName="email">
+                <div *ngIf="email.touched && email.invalid">
+                    <div class="invalid-feedback d-block" *ngIf="email.errors?.['required']">*required</div>
+                <div class="invalid-feedback d-block" *ngIf="email?.errors?.['gmail']">
+                    enter valid domain
+                </div>
+            </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn btn-primary mt-4" [disabled]="signUpForm.invalid">Sign Up</button>
+    </form>
+</div>
