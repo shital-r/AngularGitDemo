@@ -18,6 +18,7 @@ import { ProductReactiveFormbuilderComponent } from './product-reactive-formbuil
 import { RegistrationTemplateFormComponent } from './registration-template-form/registration-template-form.component';
 import { MockComponent } from './mock/mock.component';
 import { RetrivetableComponent } from './retrivetable/retrivetable.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RetrivetableComponent } from './retrivetable/retrivetable.component';
     ProductReactiveFormbuilderComponent,
     RegistrationTemplateFormComponent,
     MockComponent,
-    RetrivetableComponent,    
+    RetrivetableComponent,
+    LoginComponent,    
   ],
   imports: [
     BrowserModule,
